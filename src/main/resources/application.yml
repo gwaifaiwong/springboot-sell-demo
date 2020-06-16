@@ -1,0 +1,7 @@
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file:
+#    path:
+#  level:
+#    com.gwaifaiwong.sell.LoggerTest: debug
