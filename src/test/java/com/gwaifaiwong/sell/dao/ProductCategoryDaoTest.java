@@ -31,7 +31,7 @@ public class ProductCategoryDaoTest {
     }
     @Test
     public void saveTest(){
-        ProductCategory productCategory = new ProductCategory("男生最爱",4);
+        ProductCategory productCategory = new ProductCategory("女生最爱",5);
         ProductCategory result = productCategoryDao.save(productCategory);
         Assert.assertNotNull(result);
 //        Assert.assertNotEquals(null,result);

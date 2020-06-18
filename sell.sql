@@ -18,7 +18,7 @@ create table `product_category`(
                                    `create_time` timestamp not null default current_timestamp comment'创建时间',
                                    `updeta_time` timestamp not null default current_timestamp on update current_timestamp comment'修改时间',
                                    primary key(`category_id`),
-                                   key `uqe_category_type`(`category_type`)
+                                   unique key `uqe_category_type`(`category_type`)
 ) comment '类目表';
 
 create table `order_master`(
