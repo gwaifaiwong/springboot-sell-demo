@@ -1,7 +1,8 @@
-#logging:
-#  pattern:
-#    console: "%d - %msg%n"
-#  file:
-#    path:
-#  level:
-#    com.gwaifaiwong.sell.LoggerTest: debug
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://172.20.10.8/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
