@@ -28,7 +28,7 @@ public class OrderDetailDaoTest {
         orderDetail.setProductId("123456789");
         orderDetail.setProductIcon("http://xxxx.jpg");
         orderDetail.setProductName("皮蛋粥");
-        orderDetail.setProductPrice(new BigDecimal(2.2));
+        orderDetail.setProductPrice(new BigDecimal("2.2"));
         orderDetail.setProductQuantity(2);
 
         OrderDetail result = orderDetialDao.save(orderDetail);

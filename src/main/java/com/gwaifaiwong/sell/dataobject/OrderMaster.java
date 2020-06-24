@@ -17,7 +17,9 @@ import java.util.Date;
 @Data
 @DynamicUpdate
 public class OrderMaster {
-    /**订单id*/
+    /**
+     * 订单id
+     */
     @Id
     private String orderId;
 
