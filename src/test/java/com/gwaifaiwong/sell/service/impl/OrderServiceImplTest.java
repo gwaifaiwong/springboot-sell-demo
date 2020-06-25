@@ -2,6 +2,7 @@ package com.gwaifaiwong.sell.service.impl;
 
 import com.gwaifaiwong.sell.dataobject.OrderDetail;
 import com.gwaifaiwong.sell.dto.OrderDTO;
+import com.gwaifaiwong.sell.enums.OrderStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,9 @@ class OrderServiceImplTest {
 
     @Test
     void cancel() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
     }
 
     @Test

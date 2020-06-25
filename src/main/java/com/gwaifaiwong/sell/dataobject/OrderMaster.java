@@ -1,6 +1,6 @@
 package com.gwaifaiwong.sell.dataobject;
 
-import com.gwaifaiwong.sell.enums.OrderStatus;
+import com.gwaifaiwong.sell.enums.OrderStatusEnum;
 import com.gwaifaiwong.sell.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
@@ -33,7 +33,7 @@ public class OrderMaster {
 
     private BigDecimal orderAmount;
 
-    private Integer orderStatus = OrderStatus.NEW.getCode();
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
 
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
