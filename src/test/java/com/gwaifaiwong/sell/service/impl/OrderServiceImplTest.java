@@ -3,6 +3,7 @@ package com.gwaifaiwong.sell.service.impl;
 import com.gwaifaiwong.sell.dataobject.OrderDetail;
 import com.gwaifaiwong.sell.dto.OrderDTO;
 import com.gwaifaiwong.sell.enums.OrderStatusEnum;
+import com.gwaifaiwong.sell.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -76,9 +77,17 @@ class OrderServiceImplTest {
 
     @Test
     void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
+
     }
 
     @Test
     void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+
     }
 }
