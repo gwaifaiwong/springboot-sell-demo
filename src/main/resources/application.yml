@@ -14,3 +14,7 @@ server:
 wechat:
   mpAppId:
   mpAppSecret:
+  mchId:
+  mchKey:
+  keyPath:
+  notifyUrl:
