@@ -43,6 +43,7 @@ public class PayController {
         //发起支付
         PayResponse payResponse = payService.create(orderDTO);
         map.put("payResponse", payResponse);
+        map.put("returnUrl", returnUrl);
         return  new ModelAndView("pay/create",map);
     }
 }
