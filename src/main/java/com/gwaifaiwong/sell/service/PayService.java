@@ -1,6 +1,7 @@
 package com.gwaifaiwong.sell.service;
 
 import com.gwaifaiwong.sell.dto.OrderDTO;
+import com.lly835.bestpay.model.PayResponse;
 
 /**
  * Create by
@@ -9,5 +10,5 @@ import com.gwaifaiwong.sell.dto.OrderDTO;
  * @date 2020/6/30
  */
 public interface PayService {
-    void create(OrderDTO orderDTO);
+    PayResponse create(OrderDTO orderDTO);
 }
