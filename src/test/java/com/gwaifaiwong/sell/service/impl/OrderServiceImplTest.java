@@ -65,21 +65,21 @@ class OrderServiceImplTest {
     void findList() {
         PageRequest pageRequest = PageRequest.of(0, 2);
         Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, pageRequest);
-        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
 
     @Test
     void cancel() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
     }
 
     @Test
     void finish() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.finish(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
 
     }
 
@@ -87,7 +87,16 @@ class OrderServiceImplTest {
     void paid() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+
+    }
+
+    @Test
+    public void list() {
+        PageRequest pageRequest = PageRequest.of(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
+//        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所有的订单列表",orderDTOPage.getTotalElements()>0);
 
     }
 }
