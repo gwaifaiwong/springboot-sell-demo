@@ -8,6 +8,17 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
+  freemarker:
+    template-loader-path: classpath:/templates
+    request-context-attribute: request
+    suffix: .ftl
+    content-type: text/html
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+
 server:
   servlet:
     context-path: /sell
