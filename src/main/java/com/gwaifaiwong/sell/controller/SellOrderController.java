@@ -65,4 +65,26 @@ public class SellOrderController {
         map.put("url", "/sell/seller/order/list");
         return new ModelAndView("common/success");
     }
+
+    /**
+     * 订单详情
+     * @param orderId
+     * @param map
+     * @return
+     */
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("orderId") String orderId,
+                               Map<String, Object> map){
+        OrderDTO orderDTO = new OrderDTO();
+        try{
+            orderDTO = orderService.findOne(orderId);
+        }catch (SellException e){
+            log.error("【卖家端取消订单】发生异常{}",e);
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
+        map.put("orderDTO", orderDTO);
+        return new ModelAndView("order/detail", map);
+    }
 }
