@@ -1,4 +1,4 @@
-# sell
+# springboot-sell-demo
 微信点餐demo
 
 手动获取openid：
