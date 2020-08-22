@@ -1,6 +1,7 @@
 package com.gwaifaiwong.sell.controller;
 
 import com.gwaifaiwong.sell.dataobject.ProductInfo;
+import com.gwaifaiwong.sell.exception.SellException;
 import com.gwaifaiwong.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,5 +45,33 @@ public class SellerProductController {
         map.put("currentPage", page);
         map.put("size", size);
         return new ModelAndView("product/list", map);
+    }
+
+    @RequestMapping("/on_sale")
+    public ModelAndView onSale(@RequestParam("productId") String productId,
+                               Map<String,Object> map) {
+        try {
+            productService.onSale(productId);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success", map);
+    }
+
+    @RequestMapping("/off_sale")
+    public ModelAndView offSale(@RequestParam("productId") String productId,
+                               Map<String,Object> map) {
+        try {
+            productService.offSale(productId);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success", map);
     }
 }
