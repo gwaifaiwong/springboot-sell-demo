@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @DynamicUpdate
@@ -22,6 +23,10 @@ public class ProductCategory {
     private String categoryName;
 
     private Integer categoryType;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public ProductCategory() {
     }
