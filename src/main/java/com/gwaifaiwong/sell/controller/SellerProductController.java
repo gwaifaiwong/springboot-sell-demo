@@ -6,6 +6,7 @@ import com.gwaifaiwong.sell.exception.SellException;
 import com.gwaifaiwong.sell.form.ProductForm;
 import com.gwaifaiwong.sell.service.CategoryService;
 import com.gwaifaiwong.sell.service.ProductService;
+import com.gwaifaiwong.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -89,8 +90,8 @@ public class SellerProductController {
     }
 
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value = "productId",required = false) String productId,
-                      Map<String, Object> map){
+    public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
+                              Map<String, Object> map) {
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productService.findOne(productId);
             map.put("productInfo", productInfo);
@@ -105,6 +106,7 @@ public class SellerProductController {
 
     /**
      * 保存/更新
+     *
      * @param form
      * @param bindingResult
      * @param map
@@ -113,17 +115,22 @@ public class SellerProductController {
     @PostMapping("save")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
-                             Map<String,Object> map){
+                             Map<String, Object> map) {
         if (bindingResult.hasErrors()) {
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
             map.put("url", "/sell/seller/product/index");
             return new ModelAndView("common/error", map);
         }
+        ProductInfo productInfo = new ProductInfo();
         try {
+            if (!StringUtils.isEmpty(form.getProductId())) {
+                productInfo = productService.findOne(form.getProductId());
+            } else {
+                form.setProductId(KeyUtil.genUniqueKey());
+            }
 
-        ProductInfo productInfo = productService.findOne(form.getProductId());
-        BeanUtils.copyProperties(form, productInfo);
-        productService.save(productInfo);
+            BeanUtils.copyProperties(form, productInfo);
+            productService.save(productInfo);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
             map.put("url", "/sell/seller/product/index");
