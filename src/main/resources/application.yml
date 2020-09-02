@@ -25,7 +25,14 @@ server:
 wechat:
   mpAppId:
   mpAppSecret:
+  openAppid:
+  opAppSecret:
   mchId:
   mchKey:
   keyPath:
   notifyUrl:
+
+projecturl:
+  wechatMpAuthorize:
+  wechatOpenAuthorize:
+  sell:
