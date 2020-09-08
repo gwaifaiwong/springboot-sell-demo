@@ -15,6 +15,7 @@ import com.gwaifaiwong.sell.exception.SellException;
 import com.gwaifaiwong.sell.service.OrderService;
 import com.gwaifaiwong.sell.service.PayService;
 import com.gwaifaiwong.sell.service.ProductService;
+import com.gwaifaiwong.sell.service.WebSocket;
 import com.gwaifaiwong.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -45,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterDao orderMasterDao;
     @Autowired
     private PayService payService;
+    @Autowired
+    private WebSocket webSocket;
 
 
     @Override
@@ -92,6 +95,9 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity())
         ).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+//        //发送websocket消息
+//        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }
