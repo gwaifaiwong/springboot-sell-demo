@@ -39,3 +39,6 @@ projecturl:
   wechatMpAuthorize:
   wechatOpenAuthorize:
   sell:
+logging:
+  level:
+    com.gwaifaiwong.sell.dataobject.mapper: trace
