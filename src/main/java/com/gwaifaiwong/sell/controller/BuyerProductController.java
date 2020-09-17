@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +30,7 @@ public class BuyerProductController {
 
 
     @GetMapping("/list")
+//    @Cacheable(cacheNames = "product",key = "123")
     public ResultVO list() {
 
         //1. 查询所有的商家商品

@@ -16,12 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoDao productInfoDao;
 
     @Override
+//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return productInfoDao.findById(productId).orElse(null);
     }
@@ -37,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return productInfoDao.save(productInfo);
     }

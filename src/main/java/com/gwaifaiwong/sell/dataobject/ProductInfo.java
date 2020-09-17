@@ -8,13 +8,16 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @DynamicUpdate
 @Data
-public class ProductInfo {
+public class ProductInfo implements Serializable {
+
+    private static final long serialVersionUID = 6720663597326266198L;
     @Id
     private String productId;
     /**
@@ -53,7 +56,7 @@ public class ProductInfo {
     private Date updateTime;
 
     @JsonIgnore
-    public ProductStatusEnum getProductStatusEnum(){
+    public ProductStatusEnum getProductStatusEnum() {
         return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
     }
 }

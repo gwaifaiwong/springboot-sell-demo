@@ -3,6 +3,7 @@ package com.gwaifaiwong.sell.VO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,8 +11,9 @@ import java.util.List;
  * Create by gwaifaiwong on 2020/6/21.
  */
 @Data
-public class ProductVO {
+public class ProductVO implements Serializable {
 
+    private static final long serialVersionUID = -4167054183124233126L;
     @JsonProperty("name")
     private String categoryName;
 
